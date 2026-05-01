@@ -1,0 +1,67 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5w3utxwn311f"]
+
+[ext_resource type="Script" uid="uid://ye7grw2v2bkg" path="res://Scripts/meme.gd" id="1_65bqg"]
+[ext_resource type="Texture2D" uid="uid://ge6v5ylyfwwy" path="res://Images/bee.jpg" id="2_jpr45"]
+[ext_resource type="Script" uid="uid://dmjb48ac5blpq" path="res://Scripts/meme_behavior.gd" id="2_toqri"]
+[ext_resource type="Script" uid="uid://dibe3narsatsj" path="res://Scripts/meme_movement.gd" id="3_jf8d7"]
+[ext_resource type="Script" uid="uid://4vcwbtnc2ia3" path="res://Scripts/meme_rotation.gd" id="4_iwwog"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5okbm"]
+size = Vector2(318.36536, 333.24432)
+
+[sub_resource type="SystemFont" id="SystemFont_37wur"]
+font_names = PackedStringArray("Comic Sans MS")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="SystemFont" id="SystemFont_7li58"]
+font_names = PackedStringArray("Comic Sans MS")
+font_italic = true
+font_weight = 700
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[node name="Meme" type="CharacterBody2D" node_paths=PackedStringArray("behavior")]
+scale = Vector2(0.7381458, 0.68641376)
+script = ExtResource("1_65bqg")
+behavior = NodePath("meme_behavior")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.67737615, -2.3721519)
+scale = Vector2(0.99999976, 0.9999997)
+shape = SubResource("RectangleShape2D_5okbm")
+
+[node name="Image" type="TextureRect" parent="."]
+offset_left = -151.0
+offset_top = -160.0
+offset_right = 153.0
+offset_bottom = 127.0
+texture = ExtResource("2_jpr45")
+expand_mode = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Text" type="RichTextLabel" parent="."]
+offset_left = -150.0
+offset_top = 136.0
+offset_right = 152.0
+offset_bottom = 303.0
+theme_override_fonts/normal_font = SubResource("SystemFont_37wur")
+theme_override_fonts/italics_font = SubResource("SystemFont_7li58")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="meme_behavior" type="Node" parent="."]
+script = ExtResource("2_toqri")
+
+[node name="meme_movement" type="Node" parent="meme_behavior" node_paths=PackedStringArray("meme")]
+script = ExtResource("3_jf8d7")
+meme = NodePath("../..")
+
+[node name="meme_rotation" type="Node" parent="meme_behavior" node_paths=PackedStringArray("meme")]
+script = ExtResource("4_iwwog")
+meme = NodePath("../..")

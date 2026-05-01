@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://ccbvhbk04gigr"]
+
+[ext_resource type="Script" uid="uid://dkhlkfj375r2e" path="res://Scripts/main.gd" id="1_jjgbg"]
+[ext_resource type="AudioStream" uid="uid://cwlm1i3ewoud0" path="res://Audio/among-us-role-reveal-sound.mp3" id="2_d1ilt"]
+[ext_resource type="AudioStream" uid="uid://c74okpn4r52jl" path="res://Audio/anderdingus.mp3" id="3_6iyac"]
+[ext_resource type="AudioStream" uid="uid://fhwhe7p7dplv" path="res://Audio/discord-notification.mp3" id="4_fdnlq"]
+[ext_resource type="AudioStream" uid="uid://dlij187ahuoq2" path="res://Audio/fart-with-extra-reverb.mp3" id="5_jkdf5"]
+[ext_resource type="AudioStream" uid="uid://bsapan7ngnypn" path="res://Audio/fornite.mp3" id="6_wsu2k"]
+[ext_resource type="AudioStream" uid="uid://cmd42f263bct6" path="res://Audio/hell-nah-dog_lU72pEf.mp3" id="7_k12tt"]
+[ext_resource type="AudioStream" uid="uid://bcec4w6fsnvfe" path="res://Audio/pluh.mp3" id="8_h1bgf"]
+[ext_resource type="AudioStream" uid="uid://c600uagdqfohk" path="res://Audio/taco-bell-bong-sfx.mp3" id="9_b3802"]
+[ext_resource type="AudioStream" uid="uid://du24d7hny36yr" path="res://Audio/vine-boom.mp3" id="10_fevyy"]
+[ext_resource type="AudioStream" uid="uid://br2b1skv3ncpw" path="res://Audio/yippeeeeeeeeeeeeee.mp3" id="11_hibaj"]
+
+[sub_resource type="SystemFont" id="SystemFont_7u77a"]
+font_names = PackedStringArray("Comic Sans MS")
+subpixel_positioning = 0
+multichannel_signed_distance_field = true
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_7u77a"]
+playback_mode = 2
+streams_count = 10
+stream_0/stream = ExtResource("2_d1ilt")
+stream_1/stream = ExtResource("3_6iyac")
+stream_2/stream = ExtResource("4_fdnlq")
+stream_3/stream = ExtResource("5_jkdf5")
+stream_4/stream = ExtResource("6_wsu2k")
+stream_5/stream = ExtResource("7_k12tt")
+stream_6/stream = ExtResource("8_h1bgf")
+stream_7/stream = ExtResource("9_b3802")
+stream_8/stream = ExtResource("10_fevyy")
+stream_9/stream = ExtResource("11_hibaj")
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("audioplayer")]
+script = ExtResource("1_jjgbg")
+audioplayer = NodePath("AudioStreamPlayer2D")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+z_index = 20
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 232.50003
+offset_top = 36.5
+offset_right = 840.5
+offset_bottom = 1883.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = SubResource("SystemFont_7u77a")
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[rainbow][wave][tornado][shake] promise you'll come back and laugh with me one more time"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 1, 0)
+top_level = true
+offset_right = 1084.0
+offset_bottom = 1925.0
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = SubResource("AudioStreamRandomizer_7u77a")
+
+[connection signal="button_down" from="Button" to="." method="_on_button_button_down"]
